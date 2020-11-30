@@ -1,0 +1,252 @@
+<div class="uk-container uk-container-xsmall uk-section">
+  <mat-card>
+    <div uk-grid>
+      <div class="uk-width-1-3@s">
+        <img
+          [src]="profile.photo"
+          [alt]="profile.name"
+          width="200"
+          class="profile-photo uk-align-center"
+        />
+        <ul class="uk-list uk-margin-remove-top">
+          <li *ngIf="profile?.placeResidence">
+            <h6 class="uk-heading-line uk-text-right uk-text-uppercase">
+              <span>DIRECCIÓN</span>
+            </h6>
+            <small>{{ profile.placeResidence }}</small>
+          </li>
+          <li>
+            <h6 class="uk-heading-line uk-text-right uk-text-uppercase">
+              <span>TELÉFONOS</span>
+            </h6>
+
+            <div
+              uk-grid
+              class="uk-margin-remove"
+              *ngFor="
+                let phone of profile?.phones || [];
+                trackBy: phonesTrackBy
+              "
+            >
+              <div class="uk-width-1-4 uk-padding-remove">
+                <small class="uk-text-bold uk-text-capitalize">{{
+                  phone.label
+                }}</small>
+              </div>
+              <div class="uk-width-3-4 uk-padding-remove uk-text-right">
+                <small>{{ phone.number | phone }}</small>
+              </div>
+            </div>
+          </li>
+          <li>
+            <h6 class="uk-heading-line uk-text-right uk-text-uppercase">
+              <span>Habilidades</span>
+            </h6>
+            <div
+              uk-grid
+              class="uk-margin-remove"
+              *ngFor="
+                let skill of profile?.skills || [];
+                trackBy: skillsTrackBy
+              "
+            >
+              <div class="uk-width-5-6 uk-padding-remove">
+                <small class="uk-text-bold uk-text-capitalize">{{
+                  skill.name
+                }}</small>
+              </div>
+              <div class="uk-width-1-6 uk-padding-remove uk-text-right">
+                <small>{{ skill.percentage }}%</small>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="uk-width-2-3@s">
+        <h1>
+          <span class="title">{{ profile.name }}</span>
+          <a
+            [href]="'mailto:' + profile.email"
+            class="uk-text-small uk-display-block"
+          >
+            {{ profile.email }}
+          </a>
+          <small class="uk-text-muted uk-text-small uk-display-block">
+            {{ profile.title }}
+          </small>
+        </h1>
+
+        <h4 class="uk-heading-divider">RESUMEN</h4>
+        <p>
+          Tengo <b>{{ profile.age }}</b> años y una experiencia de
+          <b>{{ profile.yearsExperience }}</b> años en desarrollo de sitios web,
+          aplicaciones web y móviles. Nací en {{ profile.cityBirth.name }} /
+          {{ profile.cityBirth.department }} y actualmente vivo en
+          {{ profile.cityResidence.name }} de
+          {{ profile.cityResidence.country.name }}.
+        </p>
+        <mat-accordion>
+          <mat-expansion-panel expanded>
+            <mat-expansion-panel-header>
+              <mat-panel-title class="uk-text-uppercase">
+                PERFIL
+              </mat-panel-title>
+              <mat-panel-description class="uk-text-capitalize">
+                Acerca de mí
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            <p>
+              La formación, los conocimientos adquiridos en el área de
+              Tecnología en Análisis y Desarrollo de Sistemas de Información,
+              sumado a la experiencia laboral, me permiten participar
+              activamente como desarrollador de sitios y aplicaciones web e
+              híbridas.
+            </p>
+            <p>
+              Conocimientos que tienen como objetivo respaldar una organización
+              en el logro de sus objetivos. Nivel Básico de inglés e interés por
+              la actualización profesional.
+            </p>
+            <p>
+              Persona con calidad humana y responsabilidad en las labores
+              encomendadas, demostrando siempre cumplimiento, seriedad y respeto
+              ante los compromisos adquiridos. Capacidad de trabajo en equipo,
+              adaptabilidad al cambio y al aprendizaje continuo. Persistencia,
+              pro actividad y dedicación orientada a la obtención de resultados.
+            </p>
+          </mat-expansion-panel>
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title class="uk-text-uppercase">
+                Educación
+              </mat-panel-title>
+              <mat-panel-description class="uk-text-capitalize">
+                Información Académica
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+
+            <mat-list role="list">
+              <mat-list-item
+                *ngFor="let study of profile.studies; trackBy: studiesTrackBy"
+              >
+                <mat-icon mat-list-icon>school</mat-icon>
+                <div mat-line [matTooltip]="study.title">
+                  {{ study.title }}
+                </div>
+                <div mat-line class="uk-text-muted">
+                  <small *ngIf="study?.fromDate && study?.toDate"
+                    >{{
+                      (study.fromDate?.toDate
+                        ? study.fromDate.toDate()
+                        : study.fromDate) || currentDate | date
+                    }}
+                    -
+                    {{
+                      (study.toDate?.toDate
+                        ? study.toDate.toDate()
+                        : study.toDate) || currentDate | date
+                    }}</small
+                  >
+                </div>
+                <div
+                  mat-line
+                  [matTooltip]="
+                    study.instution +
+                    ' - ' +
+                    study.city.name +
+                    ' / ' +
+                    study.city.country.name
+                  "
+                >
+                  <small
+                    ><b
+                      >{{ study.instution }} - {{ study.city.name }} /
+                      {{ study.city.country.name }}</b
+                    ></small
+                  >
+                </div>
+              </mat-list-item>
+            </mat-list>
+          </mat-expansion-panel>
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title class="uk-text-uppercase">
+                Experiencia
+              </mat-panel-title>
+              <mat-panel-description class="uk-text-capitalize">
+                Información Laboral
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+
+            <mat-list role="list">
+              <mat-list-item
+                *ngFor="let job of profile.jobs; trackBy: jobsTrackBy"
+              >
+                <mat-icon mat-list-icon>work</mat-icon>
+                <div mat-line [matTooltip]="job.title">
+                  {{ job.title }}
+                </div>
+                <div mat-line class="uk-text-muted">
+                  <small *ngIf="job?.fromDate && job?.toDate"
+                    >{{
+                      (job.fromDate?.toDate
+                        ? job.fromDate.toDate()
+                        : job.fromDate) || currentDate | date
+                    }}
+                    -
+                    {{
+                      (job.toDate?.toDate ? job.toDate.toDate() : job.toDate) ||
+                        currentDate | date
+                    }}</small
+                  >
+                </div>
+                <div
+                  mat-line
+                  [matTooltip]="
+                    job.instution +
+                    ' - ' +
+                    job.city.name +
+                    ' / ' +
+                    job.city.country.name
+                  "
+                >
+                  <small
+                    ><b
+                      >{{ job.instution }} - {{ job.city.name }} /
+                      {{ job.city.country.name }}</b
+                    ></small
+                  >
+                </div>
+                <div mat-line class="uk-text-muted" *ngIf="job.url">
+                  <a [href]="job.url" target="_blank" *ngIf="job.url">
+                    <small>{{ job.url }}</small>
+                  </a>
+                </div>
+                <div mat-line class="uk-text-muted" *ngIf="job.reference">
+                  <small><b>Referencia</b> {{ job.reference }}</small>
+                </div>
+              </mat-list-item>
+            </mat-list>
+          </mat-expansion-panel>
+        </mat-accordion>
+      </div>
+    </div>
+    <div class="uk-section-small uk-text-center">
+      <span *ngFor="let network of profile.networks">
+        <a
+          [href]="network.url"
+          target="_blank"
+          class="uk-icon-button"
+          [title]="network.title"
+          [appUkIcon]="network.icon"
+        ></a>
+        &nbsp;
+      </span>
+    </div>
+  </mat-card>
+</div>
+<div
+  class="uk-container uk-container-xsmall uk-section-small uk-text-muted uk-text-center"
+>
+  &copy; Todos los derechos reservados {{ currentDate.getFullYear() }}.
+</div>

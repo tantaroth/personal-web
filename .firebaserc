@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "tantaroth-pw": {
+      "hosting": {
+        "tantaroth": [
+          "tantaroth-pw"
+        ]
+      }
+    }
+  }
+}
