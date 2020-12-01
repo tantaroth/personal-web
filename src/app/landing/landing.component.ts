@@ -1,4 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { jsPDF } from 'jspdf';
+import domtoimage from 'dom-to-image';
+import html2canvas from 'html2canvas';
+import $ from 'cash-dom';
+import { Observable, of } from 'rxjs';
 
 interface Country {
   code: string;
@@ -64,8 +69,10 @@ interface Profile {
   styleUrls: ['./landing.component.scss'],
 })
 export class LandingComponent implements OnInit {
+  @ViewChild('htmlPDF', { static: true }) htmlPDF: ElementRef;
   profile: Profile;
-  currentDate: Date =  new Date();
+  currentDate: Date = new Date();
+  loading: Observable<boolean>;
 
   constructor() {
     const COUNTRIES_MOCK: Country[] = [
@@ -113,13 +120,13 @@ export class LandingComponent implements OnInit {
       networks: [
         {
           title: 'LinkedIn',
-          url: 'https://www.linkedin.com/in/tantaroth/',
-          icon: 'linkedin'
+          url: 'linkedin.com/in/tantaroth',
+          icon: 'linkedin',
         },
         {
           title: 'GitHub',
-          url: 'https://github.com/tantaroth',
-          icon: 'github'
+          url: 'github.com/tantaroth',
+          icon: 'github',
         },
       ],
       studies: [
@@ -360,6 +367,38 @@ export class LandingComponent implements OnInit {
   }
 
   ngOnInit(): void {}
+
+  pdf() {
+    this.loading = of(true);
+    const node: HTMLElement = this.htmlPDF.nativeElement;
+
+    html2canvas(node).then((canvas) => {
+      let pdf: jsPDF = new jsPDF('p', 'mm');
+
+      const imgWidth = 210;
+      const pageHeight = 295;
+      const imgHeight = (canvas.height * imgWidth) / canvas.width;
+      console.log(canvas.height, imgWidth, canvas.width, imgHeight);
+      let heightLeft = imgHeight;
+      const imgData = canvas.toDataURL('image/jpeg', 1.0);
+
+      var position = 0;
+
+      pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+      heightLeft -= pageHeight;
+
+      while (heightLeft >= 0) {
+        position = heightLeft - imgHeight;
+        pdf.addPage();
+        pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+        heightLeft -= pageHeight;
+      }
+
+      pdf.save('Eduard Ramirez - CV.pdf');
+
+      this.loading = of(false);
+    });
+  }
 
   phonesTrackBy(index: number): number {
     return index;

@@ -22,11 +22,14 @@
     "@angular/platform-browser": "~10.1.0",
     "@angular/platform-browser-dynamic": "~10.1.0",
     "@angular/router": "~10.1.0",
+    "cash-dom": "^8.1.0",
+    "dom-to-image": "^2.6.0",
+    "firebase": "^7.0.0 || ^8.0.0",
+    "jspdf": "^2.1.1",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "uikit": "^3.5.10",
-    "zone.js": "~0.10.2",
-    "firebase": "^7.0.0 || ^8.0.0"
+    "zone.js": "~0.10.2"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.1001.0",
