@@ -1,8 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { jsPDF } from 'jspdf';
-import domtoimage from 'dom-to-image';
 import html2canvas from 'html2canvas';
-import $ from 'cash-dom';
 import { Observable, of } from 'rxjs';
 
 interface Country {
