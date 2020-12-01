@@ -368,8 +368,12 @@ export class LandingComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  pdf() {
+  pdf(event: Event) {
+    event.preventDefault();
+    event.stopPropagation();
+    
     this.loading = of(true);
+    
     const node: HTMLElement = this.htmlPDF.nativeElement;
 
     html2canvas(node).then((canvas) => {
@@ -378,7 +382,7 @@ export class LandingComponent implements OnInit {
       const imgWidth = 210;
       const pageHeight = 295;
       const imgHeight = (canvas.height * imgWidth) / canvas.width;
-      console.log(canvas.height, imgWidth, canvas.width, imgHeight);
+      
       let heightLeft = imgHeight;
       const imgData = canvas.toDataURL('image/jpeg', 1.0);
 

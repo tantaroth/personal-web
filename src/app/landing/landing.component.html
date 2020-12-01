@@ -17,8 +17,9 @@
           <button
             type="button"
             mat-raised-button
+            [disabled]="!!(loading | async)"
             color="primary"
-            (click)="pdf()"
+            (click)="pdf($event)"
           >
             DESCARGAR PDF
           </button>
