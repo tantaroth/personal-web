@@ -98,7 +98,7 @@
           <b>{{ profile.yearsExperience }}</b> años en desarrollo de sitios web,
           aplicaciones web y móviles. Nací en {{ profile.cityBirth.name }} /
           {{ profile.cityBirth.department }} y actualmente vivo en
-          {{ profile.cityResidence.name }} de
+          {{ profile.cityResidence.name }} /
           {{ profile.cityResidence.country.name }}.
         </p>
         <mat-accordion>
@@ -198,7 +198,9 @@
               <mat-list-item
                 *ngFor="let job of profile.jobs; trackBy: jobsTrackBy"
               >
-                <mat-icon mat-list-icon>work</mat-icon>
+                <mat-icon mat-list-icon>{{
+                  job?.type === "job" ? "work" : "user"
+                }}</mat-icon>
                 <div mat-line [matTooltip]="job.title">
                   {{ job.title }}
                 </div>
@@ -244,6 +246,82 @@
               </mat-list-item>
             </mat-list>
           </mat-expansion-panel>
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title class="uk-text-uppercase">
+                Proyectos
+              </mat-panel-title>
+              <mat-panel-description class="uk-text-capitalize">
+                Independiente
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+
+            <mat-list role="list">
+              <mat-list-item
+                *ngFor="
+                  let project of profile.projects;
+                  trackBy: projectsTrackBy
+                "
+              >
+                <mat-icon mat-list-icon>web</mat-icon>
+                <div mat-line [matTooltip]="project.title">
+                  {{ project.title }}
+                </div>
+                <div mat-line [matTooltip]="project.description">
+                  <small
+                    ><b>{{ project.description }}</b></small
+                  >
+                </div>
+                <div mat-line class="uk-text-muted" *ngIf="project?.url">
+                  <small>
+                    <a [href]="project?.url" target="_blank">{{
+                      project?.url
+                    }}</a>
+                  </small>
+                </div>
+              </mat-list-item>
+            </mat-list>
+          </mat-expansion-panel>
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title class="uk-text-uppercase">
+                Referencias
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+
+            <mat-list role="list">
+              <mat-list-item
+                *ngFor="
+                  let reference of profile.references;
+                  trackBy: referencesTrackBy
+                "
+              >
+                <mat-icon mat-list-icon>{{
+                  reference?.type === "job"
+                    ? "work"
+                    : reference?.type === "personal"
+                    ? "face"
+                    : "family_restroom"
+                }}</mat-icon>
+                <div mat-line [matTooltip]="reference.name">
+                  {{ reference.name }}
+                </div>
+                <div mat-line [matTooltip]="reference.description">
+                  <small
+                    ><b>{{ reference.description }}</b></small
+                  >
+                </div>
+                <div mat-line class="uk-text-muted" *ngIf="reference?.email">
+                  <small
+                    ><b>Correo electrónico</b> {{ reference?.email }}</small
+                  >
+                </div>
+                <div mat-line class="uk-text-muted" *ngIf="reference?.phone">
+                  <small><b>Teléfono</b> {{ reference?.phone | phone }}</small>
+                </div>
+              </mat-list-item>
+            </mat-list>
+          </mat-expansion-panel>
         </mat-accordion>
       </div>
     </div>
@@ -267,7 +345,7 @@
   &copy; Todos los derechos reservados {{ currentDate.getFullYear() }}.
 </div>
 
-<div style="overflow: hidden; height: 0">
+<div class="downloadble">
   <div #htmlPDF>
     <div class="uk-container">
       <div uk-grid>
@@ -352,7 +430,7 @@
             <b>{{ profile.yearsExperience }}</b> años en desarrollo de sitios
             web, aplicaciones web y móviles. Nací en
             {{ profile.cityBirth.name }} / {{ profile.cityBirth.department }} y
-            actualmente vivo en {{ profile.cityResidence.name }} de
+            actualmente vivo en {{ profile.cityResidence.name }} /
             {{ profile.cityResidence.country.name }}.
           </p>
 
@@ -486,6 +564,71 @@
               </div>
             </mat-list-item>
           </mat-list>
+
+          <h3 class="uk-heading-bullet uk-text-uppercase">
+            Proyectos
+            <small class="uk-text-muted uk-text-capitalize"
+              >Independiente</small
+            >
+          </h3>
+
+          <mat-list role="list">
+            <mat-list-item
+              *ngFor="let project of profile.projects; trackBy: projectsTrackBy"
+            >
+              <mat-icon mat-list-icon>web</mat-icon>
+              <div mat-line [matTooltip]="project.title">
+                {{ project.title }}
+              </div>
+              <div mat-line [matTooltip]="project.description">
+                <small
+                  ><b>{{ project.description }}</b></small
+                >
+              </div>
+              <div mat-line class="uk-text-muted" *ngIf="project?.url">
+                <small>
+                  <a [href]="project?.url" target="_blank">{{
+                    project?.url
+                  }}</a>
+                </small>
+              </div>
+            </mat-list-item>
+          </mat-list>
+
+          <h3 class="uk-heading-bullet uk-text-uppercase">
+            Referencias
+          </h3>
+
+          <mat-list role="list">
+            <mat-list-item
+              *ngFor="
+                let reference of profile.references;
+                trackBy: referencesTrackBy
+              "
+            >
+              <mat-icon mat-list-icon>{{
+                reference?.type === "job"
+                  ? "work"
+                  : reference?.type === "personal"
+                  ? "face"
+                  : "family_restroom"
+              }}</mat-icon>
+              <div mat-line [matTooltip]="reference.name">
+                {{ reference.name }}
+              </div>
+              <div mat-line [matTooltip]="reference.description">
+                <small
+                  ><b>{{ reference.description }}</b></small
+                >
+              </div>
+              <div mat-line class="uk-text-muted" *ngIf="reference?.email">
+                <small><b>Correo electrónico</b> {{ reference?.email }}</small>
+              </div>
+              <div mat-line class="uk-text-muted" *ngIf="reference?.phone">
+                <small><b>Teléfono</b> {{ reference?.phone | phone }}</small>
+              </div>
+            </mat-list-item>
+          </mat-list>
         </div>
       </div>
       <div class="uk-section-small uk-text-left">
@@ -493,13 +636,9 @@
         <p *ngFor="let network of profile.networks">
           <b>{{ network.title }}</b>
           &nbsp;
-          <a
-            [href]="network.url"
-            target="_blank"
-            [title]="network.title"
-            class="uk-float-right"
-            >{{ network.url }}</a
-          >
+          <a [href]="network.url" target="_blank" [title]="network.title">{{
+            network.url
+          }}</a>
           &nbsp;
         </p>
         <p class="uk-text-center uk-text-muted">tantaroth-pw.web.app</p>

@@ -39,6 +39,20 @@ interface Network {
   icon: string;
 }
 
+interface Project {
+  title: string;
+  url: string;
+  description: string;
+}
+
+interface Reference {
+  type: 'personal' | 'job' | 'familiar';
+  name: string;
+  description: string;
+  phone?: number;
+  email?: string;
+}
+
 interface Profile {
   name: string;
   photo: string;
@@ -58,6 +72,8 @@ interface Profile {
   skills: Skill[];
   studies: Certification[];
   jobs: Certification[];
+  projects: Project[];
+  references: Reference[];
   networks: Network[];
 }
 
@@ -150,11 +166,43 @@ export class LandingComponent implements OnInit {
           city: CITIES_MOCK[0],
         },
       ],
+      projects: [
+        {
+          title: 'AfroUp',
+          description: 'Plataforma web activista de la cultura afro',
+          url: 'https://afroup.com',
+        },
+        {
+          title: 'Takto Internacional',
+          description: 'Plataforma web de multinivel',
+          url: 'https://taktoint.com',
+        },
+      ],
+      references: [
+        {
+          name: 'Jenniffer Mayren Urrutia Briñez',
+          description: 'Publicista Internacional',
+          phone: 570314703804,
+          type: 'familiar'
+        },
+        {
+          name: 'Néstor Marín Cruz',
+          description: 'Ingeniero de software',
+          phone: 573002216591,
+          type: 'personal'
+        },
+        {
+          name: 'Julian Gaviria Valencia',
+          description: 'Tecnólogo (Análisis y Desarrollo de Sistemas de Información)',
+          phone: 573112415944,
+          type: 'job'
+        },
+      ],
       jobs: [
         {
           instution: 'Accenture',
           fromDate: new Date('November 5, 2019 00:00:00'),
-          toDate: new Date('June 1, 2020 00:00:00'),
+          toDate: new Date('June 10, 2020 00:00:00'),
           title: 'Application Development Senior Analyst',
           description:
             '(NodeJS, Angular, IONIC, AWS, Firebase). Desarrollo y mantenimiento de sitios web y aplicaciones móviles para clientes de la firma.',
@@ -369,9 +417,9 @@ export class LandingComponent implements OnInit {
   pdf(event: Event) {
     event.preventDefault();
     event.stopPropagation();
-    
+
     this.loading = of(true);
-    
+
     const node: HTMLElement = this.htmlPDF.nativeElement;
 
     html2canvas(node).then((canvas) => {
@@ -380,7 +428,7 @@ export class LandingComponent implements OnInit {
       const imgWidth = 210;
       const pageHeight = 295;
       const imgHeight = (canvas.height * imgWidth) / canvas.width;
-      
+
       let heightLeft = imgHeight;
       const imgData = canvas.toDataURL('image/jpeg', 1.0);
 
@@ -412,6 +460,12 @@ export class LandingComponent implements OnInit {
     return index;
   }
   jobsTrackBy(index: number): number {
+    return index;
+  }
+  referencesTrackBy(index: number): number {
+    return index;
+  }
+  projectsTrackBy(index: number): number {
     return index;
   }
 }

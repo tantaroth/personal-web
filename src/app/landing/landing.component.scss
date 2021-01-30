@@ -1,13 +1,53 @@
 .title {
-    color: #626e6f;
-    font-family: 'Anton', sans-serif;
+  color: #626e6f;
+  font-family: "Anton", sans-serif;
 }
 .profile-photo {
-    transform: translateY(-25%);
+  transform: translateY(-25%);
 }
 .download-action {
-    transform: translateY(-100%);
+  transform: translateY(-100%);
 }
 .container-tiny {
-    padding: 5px;
+  padding: 5px;
+}
+.downloadble {
+  overflow: hidden;
+  height: 0;
+
+  * {
+    font-size: 14pt;
+  }
+  small,
+  small * {
+    font-size: 12pt;
+  }
+  h6,
+  h6 * {
+    font-size: 14pt;
+  }
+  h5,
+  h5 * {
+    font-size: 15pt;
+  }
+  h4,
+  h4 * {
+    font-size: 16pt;
+  }
+  h3,
+  h3 * {
+    font-size: 17pt;
+  }
+  h2,
+  h2 * {
+    font-size: 18pt;
+  }
+  h1,
+  h1 * {
+    font-size: 19pt;
+
+    span {
+      font-size: 36pt;
+    }
+  }
 }
