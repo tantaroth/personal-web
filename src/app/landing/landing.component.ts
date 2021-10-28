@@ -1,6 +1,11 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { jsPDF } from 'jspdf';
 import html2canvas from 'html2canvas';
+// if you want to save the docx file, you need import 'file-saver'
+import pdfMake from 'pdfmake/build/pdfmake';
+import pdfFonts from 'pdfmake/build/vfs_fonts';
+pdfMake.vfs = pdfFonts.pdfMake.vfs;
+import htmlToPdfmake from 'html-to-pdfmake';
 import { Observable, of } from 'rxjs';
 
 interface Country {
@@ -134,12 +139,12 @@ export class LandingComponent implements OnInit {
       networks: [
         {
           title: 'LinkedIn',
-          url: 'linkedin.com/in/tantaroth',
+          url: 'https://linkedin.com/in/tantaroth',
           icon: 'linkedin',
         },
         {
           title: 'GitHub',
-          url: 'github.com/tantaroth',
+          url: 'https://github.com/tantaroth',
           icon: 'github',
         },
       ],
@@ -183,29 +188,56 @@ export class LandingComponent implements OnInit {
           name: 'Jenniffer Mayren Urrutia Briñez',
           description: 'Publicista Internacional',
           phone: 570314703804,
-          type: 'familiar'
+          type: 'familiar',
         },
         {
           name: 'Néstor Marín Cruz',
           description: 'Ingeniero de software',
           phone: 573002216591,
-          type: 'personal'
+          type: 'personal',
         },
         {
           name: 'Julian Gaviria Valencia',
-          description: 'Tecnólogo (Análisis y Desarrollo de Sistemas de Información)',
+          description:
+            'Tecnólogo (Análisis y Desarrollo de Sistemas de Información)',
           phone: 573112415944,
-          type: 'job'
+          type: 'job',
         },
       ],
       jobs: [
+        {
+          instution: 'INSOFTAR',
+          fromDate: new Date('December 18, 2020 00:00:00'),
+          toDate: new Date(),
+          title: 'Full Stack Developer',
+          description: `
+          (NodeJS, Angular). Desarrollo y mantenimiento de de sitio web de clientes ciencuadras.com
+          <ul>
+            <li>Desarrollo de angular sobre la plataforma del cliente</li>
+            <li>Desarrollo de la api sobre api con el framework de swagger</li>
+            <li>Desarrollo de las pruebas unitarias sobre jest en angular</li>
+            <li>Organización sobre la metodología SCRUM usando la herramienta JIRA</li>
+            <li>Ejecución de las pruebas unitarias sobre sonar</li>
+          </ul>
+          `,
+          url: 'insoftar.com',
+          city: CITIES_MOCK[0],
+        },
         {
           instution: 'Accenture',
           fromDate: new Date('November 5, 2019 00:00:00'),
           toDate: new Date('June 10, 2020 00:00:00'),
           title: 'Application Development Senior Analyst',
-          description:
-            '(NodeJS, Angular, IONIC, AWS, Firebase). Desarrollo y mantenimiento de sitios web y aplicaciones móviles para clientes de la firma.',
+          description: `
+            (NodeJS, Angular, IONIC, AWS, Firebase). Desarrollo y mantenimiento de sitios web y aplicaciones móviles para clientes de la firma.
+            <ul>
+              <li>Desarrollo de angular e IONIC sobre la plataforma del cliente</li>
+              <li>Implementación de la librería AR.js y mapbox para juego de uno de los clientes de la empresa</li>
+              <li>Desarrollo de las pruebas unitarias sobre jest en angular</li>
+              <li>Organización sobre la metodología SCRUM usando la herramienta JIRA</li>
+              <li>Ejecución de las pruebas unitarias sobre sonar</li>
+            </ul>
+            `,
           url: 'accenture.com',
           city: CITIES_MOCK[0],
         },
@@ -214,8 +246,17 @@ export class LandingComponent implements OnInit {
           fromDate: new Date('Febrary 05, 2019 00:00:00'),
           toDate: new Date('October 01, 2019 00:00:00'),
           title: 'Full Stack Developer',
-          description:
-            '(NodeJS, Angular, ElasticSearch, Laravel). Desarrollo y mantenimiento de de sitio web de clientes ciencuadras.',
+          description: `
+            (NodeJS, Angular, ElasticSearch, Laravel). Desarrollo y mantenimiento de de sitio web de clientes ciencuadras.com
+            <ul>
+              <li>Desarrollo de angular y laravel sobre la plataforma del cliente</li>
+              <li>Implementación de la matterport y pannellum para juego de uno de los clientes de la empresa</li>
+              <li>Desarrollo de las pruebas unitarias sobre jest en angular</li>
+              <li>Organización sobre la metodología SCRUM usando la herramienta JIRA</li>
+              <li>Se crean indices para traer los inmuebles del proyecto</li>
+              <li>Ejecución de las pruebas unitarias sobre sonar</li>
+            </ul>
+            `,
           url: 'insoftar.com',
           city: CITIES_MOCK[0],
         },
@@ -224,8 +265,15 @@ export class LandingComponent implements OnInit {
           fromDate: new Date('April 18, 2018 00:00:00'),
           toDate: new Date('December 21, 2018 00:00:00'),
           title: 'Semi-Senior Full Stack',
-          description:
-            '(NodeJS, Angular, MongoDB, IONIC). Desarrollo de aplicaciones móviles híbridas y web.',
+          description: `
+            (NodeJS, Angular, MongoDB, IONIC). Desarrollo de aplicaciones móviles híbridas y web.
+            <ul>
+              <li>Desarrollo de angular sobre la plataforma del cliente</li>
+              <li>Desarrollo de la api sobre api con el framework de swagger</li>
+              <li>Desarrollo de las pruebas unitarias sobre jest en angular</li>
+              <li>Organización sobre la metodología SCRUM usando la herramienta JIRA</li>
+            </ul>
+            `,
           url: 'teravisiontech.com',
           city: CITIES_MOCK[0],
           reference: 'Yuleika Carrero, ycarrero@teravisiontech.com - 756 9959',
@@ -235,8 +283,13 @@ export class LandingComponent implements OnInit {
           fromDate: new Date('November 7, 2017 00:00:00'),
           toDate: new Date('March 12, 2018 00:00:00'),
           title: 'Web Developer',
-          description:
-            '(NodeJS, Angular, PostgreSQL, SequelizeJS). Desarrollo de aplicación para administrar gimnasios.',
+          description: `
+            (NodeJS, Angular, PostgreSQL, SequelizeJS). Desarrollo de aplicación para administrar gimnasios.
+            <ul>
+              <li>Desarrollo de angular sobre la plataforma del cliente</li>
+              <li>Organización sobre la metodología SCRUM usando la herramienta JIRA</li>
+            </ul>
+            `,
           url: 'checklemon.com',
           city: CITIES_MOCK[0],
           reference: 'Edwin Fuentes Amin, 300 871 8408',
@@ -414,7 +467,7 @@ export class LandingComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  pdf(event: Event) {
+  oldPDF(event: Event) {
     event.preventDefault();
     event.stopPropagation();
 
@@ -448,6 +501,57 @@ export class LandingComponent implements OnInit {
 
       this.loading = of(false);
     });
+  }
+
+  pdf(event: Event) {
+    event.preventDefault();
+    event.stopPropagation();
+
+    this.loading = of(true);
+
+    const node: HTMLElement = this.htmlPDF.nativeElement;
+
+    var html = htmlToPdfmake(node.innerHTML);
+
+    const documentDefinition = { content: html };
+    pdfMake.createPdf(documentDefinition).open();
+    this.loading = of(false);
+
+    // HTMLToDocx(node.innerHTML).then(data => {
+    //   console.log(data)
+    //   saveAs(data, 'file2.docx');
+    // })
+    // asBlob(node.innerHTML).then((data) => {
+    //   console.log('>> data', data)
+    //   saveAs(data, 'file.docx'); // save as docx file
+    // }); // asBlob() return Promise<Blob|Buffer>
+
+    // html2canvas(node).then((canvas) => {
+    //   let pdf: jsPDF = new jsPDF('p', 'mm');
+
+    //   const imgWidth = 210;
+    //   const pageHeight = 295;
+    //   const imgHeight = (canvas.height * imgWidth) / canvas.width;
+
+    //   let heightLeft = imgHeight;
+    //   const imgData = canvas.toDataURL('image/jpeg', 1.0);
+
+    //   var position = 0;
+
+    //   pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+    //   heightLeft -= pageHeight;
+
+    //   while (heightLeft >= 0) {
+    //     position = heightLeft - imgHeight;
+    //     pdf.addPage();
+    //     pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+    //     heightLeft -= pageHeight;
+    //   }
+
+    //   pdf.save('Eduard Ramirez - CV.pdf');
+
+    //   this.loading = of(false);
+    // });
   }
 
   phonesTrackBy(index: number): number {

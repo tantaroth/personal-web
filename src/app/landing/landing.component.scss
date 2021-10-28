@@ -1,3 +1,7 @@
+.mat-line {
+  word-wrap: break-word !important; 
+        white-space: pre-wrap !important;
+}
 .title {
   color: #626e6f;
   font-family: "Anton", sans-serif;
@@ -16,38 +20,41 @@
   height: 0;
 
   * {
-    font-size: 14pt;
+    font-size: 18pt;
   }
   small,
   small * {
-    font-size: 12pt;
+    font-size: 16pt;
   }
   h6,
   h6 * {
-    font-size: 14pt;
+    font-size: 18pt;
   }
   h5,
   h5 * {
-    font-size: 15pt;
+    font-size: 19pt;
   }
   h4,
   h4 * {
-    font-size: 16pt;
+    font-size: 20pt;
   }
   h3,
   h3 * {
-    font-size: 17pt;
+    font-size: 21pt;
   }
   h2,
   h2 * {
-    font-size: 18pt;
+    font-size: 22pt;
   }
   h1,
   h1 * {
-    font-size: 19pt;
+    font-size: 23pt;
 
     span {
-      font-size: 36pt;
+      font-size: 40pt;
     }
+  }
+  ul, ol, li {
+    font-size: 18pt;
   }
 }

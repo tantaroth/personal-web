@@ -340,312 +340,317 @@
   </mat-card>
 </div>
 <div
-  class="uk-container uk-container-xsmall uk-section-small uk-text-muted uk-text-center"
+  class="
+    uk-container
+    uk-container-xsmall
+    uk-section-small
+    uk-text-muted
+    uk-text-center
+  "
 >
   &copy; Todos los derechos reservados {{ currentDate.getFullYear() }}.
 </div>
 
 <div class="downloadble">
   <div #htmlPDF>
-    <div class="uk-container">
-      <div uk-grid>
-        <div class="uk-width-1-3@s">
-          <img
-            [src]="profile.photo"
-            [alt]="profile.name"
-            width="200"
-            class="uk-align-center"
-          />
-          <ul class="uk-list uk-margin-remove-top">
-            <li *ngIf="profile?.placeResidence">
-              <h6 class="uk-heading-line uk-text-right uk-text-uppercase">
-                <span>DIRECCIÓN</span>
-              </h6>
-              <small>{{ profile.placeResidence }}</small>
-            </li>
-            <li>
-              <h6 class="uk-heading-line uk-text-right uk-text-uppercase">
-                <span>TELÉFONOS</span>
-              </h6>
+    <h1 style="color: #626e6f; font-size: 2rem">
+      {{ profile.name }}
+    </h1>
+    <h4>
+      <a
+        [href]="'mailto:' + profile.email"
+        style="
+          color: #1e87f0;
+          cursor: pointer;
+          font-size: 0.875rem;
+          line-height: 1.5;
+        "
+      >
+        {{ profile.email }}
+      </a>
+    </h4>
+    <h5>
+      <small style="color: #999; font-size: 0.875rem">
+        {{ profile.title }}
+      </small>
+    </h5>
 
-              <div
-                uk-grid
-                class="uk-margin-remove"
-                *ngFor="
-                  let phone of profile?.phones || [];
-                  trackBy: phonesTrackBy
-                "
-              >
-                <div class="uk-width-1-4 uk-padding-remove">
-                  <small class="uk-text-bold uk-text-capitalize">{{
-                    phone.label
-                  }}</small>
-                </div>
-                <div class="uk-width-3-4 uk-padding-remove uk-text-right">
-                  <small>{{ phone.number | phone }}</small>
-                </div>
-              </div>
-            </li>
-            <li>
-              <h6 class="uk-heading-line uk-text-right uk-text-uppercase">
-                <span>Habilidades</span>
-              </h6>
-              <div
-                uk-grid
-                class="uk-margin-remove"
-                *ngFor="
-                  let skill of profile?.skills || [];
-                  trackBy: skillsTrackBy
-                "
-              >
-                <div class="uk-width-5-6 uk-padding-remove">
-                  <small class="uk-text-bold uk-text-capitalize">{{
-                    skill.name
-                  }}</small>
-                </div>
-                <div class="uk-width-1-6 uk-padding-remove uk-text-right">
-                  <small>{{ skill.percentage }}%</small>
-                </div>
-              </div>
-            </li>
-          </ul>
-        </div>
-        <div class="uk-width-2-3@s">
-          <h1>
-            <span class="title">{{ profile.name }}</span>
-            <a
-              [href]="'mailto:' + profile.email"
-              class="uk-text-small uk-display-block"
-            >
-              {{ profile.email }}
-            </a>
-            <small class="uk-text-muted uk-text-small uk-display-block">
-              {{ profile.title }}
-            </small>
-          </h1>
+    <br /><br />
 
-          <h4 class="uk-heading-divider">RESUMEN</h4>
-          <p>
-            Tengo <b>{{ profile.age }}</b> años y una experiencia de
-            <b>{{ profile.yearsExperience }}</b> años en desarrollo de sitios
-            web, aplicaciones web y móviles. Nací en
-            {{ profile.cityBirth.name }} / {{ profile.cityBirth.department }} y
-            actualmente vivo en {{ profile.cityResidence.name }} /
-            {{ profile.cityResidence.country.name }}.
-          </p>
+    <h4 style="font-size: 1.25rem; color: #1e4d7c">RESUMEN</h4>
+    <p>
+      Tengo <b>{{ profile.age }}</b> años y una experiencia de
+      <b>{{ profile.yearsExperience }}</b> años en desarrollo de sitios web,
+      aplicaciones web y móviles. Nací en {{ profile.cityBirth.name }} /
+      {{ profile.cityBirth.department }} y actualmente vivo en
+      {{ profile.cityResidence.name }} /
+      {{ profile.cityResidence.country.name }}.
+    </p>
 
-          <h3 class="uk-heading-bullet uk-text-uppercase">
-            PERFIL
-            <small class="uk-text-muted uk-text-capitalize">Acerca de mí</small>
-          </h3>
+    <h4 style="font-size: 1.25rem; color: #1e4d7c">
+      PERFIL
+      <small style="font-size: 1rem; color: #666">Acerca de mí</small>
+    </h4>
 
-          <p>
-            La formación, los conocimientos adquiridos en el área de Tecnología
-            en Análisis y Desarrollo de Sistemas de Información, sumado a la
-            experiencia laboral, me permiten participar activamente como
-            desarrollador de sitios y aplicaciones web e híbridas.
-          </p>
-          <p>
-            Conocimientos que tienen como objetivo respaldar una organización en
-            el logro de sus objetivos. Nivel Básico de inglés e interés por la
-            actualización profesional.
-          </p>
-          <p>
-            Persona con calidad humana y responsabilidad en las labores
-            encomendadas, demostrando siempre cumplimiento, seriedad y respeto
-            ante los compromisos adquiridos. Capacidad de trabajo en equipo,
-            adaptabilidad al cambio y al aprendizaje continuo. Persistencia, pro
-            actividad y dedicación orientada a la obtención de resultados.
-          </p>
+    <p>
+      La formación, los conocimientos adquiridos en el área de Tecnología en
+      Análisis y Desarrollo de Sistemas de Información, sumado a la experiencia
+      laboral, me permiten participar activamente como desarrollador de sitios y
+      aplicaciones web e híbridas.
+    </p>
+    <p>
+      Conocimientos que tienen como objetivo respaldar una organización en el
+      logro de sus objetivos. Nivel Básico de inglés e interés por la
+      actualización profesional.
+    </p>
+    <p>
+      Persona con calidad humana y responsabilidad en las labores encomendadas,
+      demostrando siempre cumplimiento, seriedad y respeto ante los compromisos
+      adquiridos. Capacidad de trabajo en equipo, adaptabilidad al cambio y al
+      aprendizaje continuo. Persistencia, pro actividad y dedicación orientada a
+      la obtención de resultados.
+    </p>
 
-          <h3 class="uk-heading-bullet uk-text-uppercase">
-            Educación
-            <small class="uk-text-muted uk-text-capitalize"
-              >Información Académica</small
-            >
-          </h3>
-
-          <mat-list role="list">
-            <mat-list-item
-              *ngFor="let study of profile.studies; trackBy: studiesTrackBy"
-            >
-              <mat-icon mat-list-icon>school</mat-icon>
-              <div mat-line [matTooltip]="study.title">
-                {{ study.title }}
-              </div>
-              <div mat-line class="uk-text-muted">
-                <small *ngIf="study?.fromDate && study?.toDate"
-                  >{{
-                    (study.fromDate?.toDate
-                      ? study.fromDate.toDate()
-                      : study.fromDate) || currentDate | date
-                  }}
-                  -
-                  {{
-                    (study.toDate?.toDate
-                      ? study.toDate.toDate()
-                      : study.toDate) || currentDate | date
-                  }}</small
-                >
-              </div>
-              <div
-                mat-line
-                [matTooltip]="
-                  study.instution +
-                  ' - ' +
-                  study.city.name +
-                  ' / ' +
-                  study.city.country.name
-                "
-              >
-                <small
-                  ><b
-                    >{{ study.instution }} - {{ study.city.name }} /
-                    {{ study.city.country.name }}</b
-                  ></small
-                >
-              </div>
-            </mat-list-item>
-          </mat-list>
-
-          <h3 class="uk-heading-bullet uk-text-uppercase">
-            Experiencia
-            <small class="uk-text-muted uk-text-capitalize"
-              >Información Laboral</small
-            >
-          </h3>
-
-          <mat-list role="list">
-            <mat-list-item
-              *ngFor="let job of profile.jobs; trackBy: jobsTrackBy"
-            >
-              <mat-icon mat-list-icon>work</mat-icon>
-              <div mat-line [matTooltip]="job.title">
-                {{ job.title }}
-              </div>
-              <div mat-line class="uk-text-muted">
-                <small *ngIf="job?.fromDate && job?.toDate"
-                  >{{
-                    (job.fromDate?.toDate
-                      ? job.fromDate.toDate()
-                      : job.fromDate) || currentDate | date
-                  }}
-                  -
-                  {{
-                    (job.toDate?.toDate ? job.toDate.toDate() : job.toDate) ||
-                      currentDate | date
-                  }}</small
-                >
-              </div>
-              <div
-                mat-line
-                [matTooltip]="
-                  job.instution +
-                  ' - ' +
-                  job.city.name +
-                  ' / ' +
-                  job.city.country.name
-                "
-              >
-                <small
-                  ><b
-                    >{{ job.instution }} - {{ job.city.name }} /
-                    {{ job.city.country.name }}</b
-                  ></small
-                >
-              </div>
-              <div mat-line class="uk-text-muted" *ngIf="job.url">
-                <a [href]="job.url" target="_blank" *ngIf="job.url">
-                  <small>{{ job.url }}</small>
-                </a>
-              </div>
-              <div mat-line class="uk-text-muted" *ngIf="job.reference">
-                <small><b>Referencia</b> {{ job.reference }}</small>
-              </div>
-            </mat-list-item>
-          </mat-list>
-
-          <h3 class="uk-heading-bullet uk-text-uppercase">
-            Proyectos
-            <small class="uk-text-muted uk-text-capitalize"
-              >Independiente</small
-            >
-          </h3>
-
-          <mat-list role="list">
-            <mat-list-item
-              *ngFor="let project of profile.projects; trackBy: projectsTrackBy"
-            >
-              <mat-icon mat-list-icon>web</mat-icon>
-              <div mat-line [matTooltip]="project.title">
-                {{ project.title }}
-              </div>
-              <div mat-line [matTooltip]="project.description">
-                <small
-                  ><b>{{ project.description }}</b></small
-                >
-              </div>
-              <div mat-line class="uk-text-muted" *ngIf="project?.url">
-                <small>
-                  <a [href]="project?.url" target="_blank">{{
-                    project?.url
-                  }}</a>
-                </small>
-              </div>
-            </mat-list-item>
-          </mat-list>
-
-          <h3 class="uk-heading-bullet uk-text-uppercase">
-            Referencias
-          </h3>
-
-          <mat-list role="list">
-            <mat-list-item
-              *ngFor="
-                let reference of profile.references;
-                trackBy: referencesTrackBy
-              "
-            >
-              <mat-icon mat-list-icon>{{
-                reference?.type === "job"
-                  ? "work"
-                  : reference?.type === "personal"
-                  ? "face"
-                  : "family_restroom"
-              }}</mat-icon>
-              <div mat-line [matTooltip]="reference.name">
-                {{ reference.name }}
-              </div>
-              <div mat-line [matTooltip]="reference.description">
-                <small
-                  ><b>{{ reference.description }}</b></small
-                >
-              </div>
-              <div mat-line class="uk-text-muted" *ngIf="reference?.email">
-                <small><b>Correo electrónico</b> {{ reference?.email }}</small>
-              </div>
-              <div mat-line class="uk-text-muted" *ngIf="reference?.phone">
-                <small><b>Teléfono</b> {{ reference?.phone | phone }}</small>
-              </div>
-            </mat-list-item>
-          </mat-list>
-        </div>
+    <div>
+      <h4 style="font-size: 1.25rem; color: #1e4d7c">HABILIDADES</h4>
+      <div *ngFor="let skill of profile?.skills || []; trackBy: skillsTrackBy">
+        <b>
+          <small>{{ skill.name }}: </small>
+        </b>
+        <small>{{ skill.percentage }}%</small>
       </div>
-      <div class="uk-section-small uk-text-left">
-        <h5 class="uk-heading-line"><span>Redes</span></h5>
-        <p *ngFor="let network of profile.networks">
-          <b>{{ network.title }}</b>
-          &nbsp;
-          <a [href]="network.url" target="_blank" [title]="network.title">{{
-            network.url
-          }}</a>
-          &nbsp;
-        </p>
-        <p class="uk-text-center uk-text-muted">tantaroth-pw.web.app</p>
-      </div>
-      <p>&nbsp;</p>
-      <p>&nbsp;</p>
-      <p>&nbsp;</p>
     </div>
+
+    <br />
+
+    <h4 style="color: #1e4d7c; font-size: 1.25rem">
+      EDUCACIÓN
+      <small style="font-size: 1rem; color: #666">Información Académica</small>
+    </h4>
+    <ul>
+      <li *ngFor="let study of profile.studies; trackBy: studiesTrackBy">
+        <div style="font-size: 1.25rem; color: #333">
+          {{ study.title }}
+        </div>
+        <div>
+          <small *ngIf="study?.fromDate && study?.toDate"
+            >{{
+              (study.fromDate?.toDate
+                ? study.fromDate.toDate()
+                : study.fromDate) || currentDate | date
+            }}
+            -
+            {{
+              (study.toDate?.toDate ? study.toDate.toDate() : study.toDate) ||
+                currentDate | date
+            }}</small
+          >
+        </div>
+        <div>
+          <small
+            ><b
+              >{{ study.instution }} - {{ study.city.name }} /
+              {{ study.city.country.name }}</b
+            ></small
+          >
+        </div>
+      </li>
+    </ul>
+
+    <br />
+
+    <h4 style="color: #1e4d7c; font-size: 1.25rem">
+      EXPERIENCIA
+      <small style="font-size: 1rem; color: #666">Información Laboral</small>
+    </h4>
+    <ul>
+      <li *ngFor="let job of profile.jobs; trackBy: jobsTrackBy">
+        <div style="font-size: 1.25rem; color: #333">
+          {{ job.title }}
+        </div>
+        <div style="color: #999">
+          <small *ngIf="job?.fromDate && job?.toDate"
+            >{{
+              (job.fromDate?.toDate ? job.fromDate.toDate() : job.fromDate) ||
+                currentDate | date
+            }}
+            -
+            {{
+              (job.toDate?.toDate ? job.toDate.toDate() : job.toDate) ||
+                currentDate | date
+            }}</small
+          >
+        </div>
+        <div>
+          <small
+            ><b
+              >{{ job.instution }} - {{ job.city.name }} /
+              {{ job.city.country.name }}</b
+            ></small
+          >
+        </div>
+        <div style="color: #333" class="description" *ngIf="job.description">
+          <div>
+            <p [outerHTML]="job.description">{{ job.description }}</p>
+          </div>
+        </div>
+        <div *ngIf="job.url">
+          <a
+            style="
+              color: #1e87f0;
+              cursor: pointer;
+              font-size: 0.875rem;
+              line-height: 1.5;
+            "
+            [href]="job.url"
+            target="_blank"
+            *ngIf="job.url"
+          >
+            <small>{{ job.url }}</small>
+          </a>
+        </div>
+        <div style="color: #666" *ngIf="job.reference">
+          <small><b>Referencia</b> {{ job.reference }}</small>
+        </div>
+      </li>
+    </ul>
+
+    <br />
+
+    <h4 style="color: #1e4d7c; font-size: 1.25rem">
+      PROYECTOS
+      <small style="font-size: 1rem; color: #666">Independiente</small>
+    </h4>
+    <ul>
+      <li *ngFor="let project of profile.projects; trackBy: projectsTrackBy">
+        <div style="font-size: 1.25rem; color: #333">
+          {{ project.title }}
+        </div>
+        <div
+          style="color: #333"
+          class="description"
+          *ngIf="project.description"
+        >
+          <div>
+            <p [outerHTML]="project.description">{{ project.description }}</p>
+          </div>
+        </div>
+        <div *ngIf="project.url">
+          <a
+            style="
+              color: #1e87f0;
+              cursor: pointer;
+              font-size: 0.875rem;
+              line-height: 1.5;
+            "
+            [href]="project.url"
+            target="_blank"
+            *ngIf="project.url"
+          >
+            <small>{{ project.url }}</small>
+          </a>
+        </div>
+      </li>
+    </ul>
+
+    <br />
+
+    <h4 style="color: #1e4d7c; font-size: 1.25rem">REFERENCIAS</h4>
+    <ul>
+      <li
+        *ngFor="let reference of profile.references; trackBy: referencesTrackBy"
+      >
+        <div style="font-size: 18pt">
+          <small style="font-size: 13pt; color: #666">{{
+            reference.type === "personal"
+              ? "Personal"
+              : reference.type === "job"
+              ? "Trabajo"
+              : reference.type === "familiar"
+              ? "Familiar"
+              : ""
+          }}</small>
+          {{ reference.name }}
+        </div>
+        <div>
+          <small
+            ><b style="font-size: 14pt">{{ reference.description }}</b></small
+          >
+        </div>
+        <div class="uk-text-muted" *ngIf="reference?.email">
+          <small
+            ><b style="font-size: 12pt; color: #333">Correo electrónico</b>
+            {{ reference?.email }}</small
+          >
+        </div>
+        <div class="uk-text-muted" *ngIf="reference?.phone">
+          <small
+            ><b style="font-size: 12pt; color: #333">Teléfono</b>
+            {{ reference?.phone | phone }}</small
+          >
+        </div>
+      </li>
+    </ul>
+
+    <br />
+
+    <h4 style="color: #1e4d7c; font-size: 1.25rem">CONTACTO</h4>
+    <ul>
+      <li *ngIf="profile?.placeResidence">
+        <h6 style="color: #333; font-size: 0.875rem">
+          <span><b>DIRECCIÓN</b></span>
+        </h6>
+        <small>{{ profile.placeResidence }}</small>
+      </li>
+      <li>
+        <h6 style="color: #333; font-size: 0.875rem">
+          <span><b>TELÉFONOS</b></span>
+        </h6>
+
+        <div
+          *ngFor="let phone of profile?.phones || []; trackBy: phonesTrackBy"
+        >
+          <b>
+            <small>{{ phone.label }}: </small>
+          </b>
+          <small>{{ phone.number | phone }}</small>
+        </div>
+      </li>
+      <li>
+        <h6 style="color: #333; font-size: 0.875rem">
+          <span><b>REDES</b></span>
+        </h6>
+
+        <div *ngFor="let network of profile.networks">
+          <b>{{ network.title }}:</b>
+          <a
+            style="
+              color: #1e87f0;
+              cursor: pointer;
+              font-size: 0.875rem;
+              line-height: 1.5;
+            "
+            [href]="network.url"
+            target="_blank"
+            >{{ network.url }}</a
+          >
+          &nbsp;
+        </div>
+        <div class="uk-text-center uk-text-muted">
+          <b>Sitio web:</b>
+          <a
+            style="
+              color: #1e87f0;
+              cursor: pointer;
+              font-size: 0.875rem;
+              line-height: 1.5;
+            "
+            href="http://tantaroth-pw.web.app"
+            target="_blank"
+            >tantaroth-pw.web.app</a
+          >
+        </div>
+      </li>
+    </ul>
   </div>
 </div>
